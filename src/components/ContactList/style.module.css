@@ -1,0 +1,8 @@
+.color {
+  text-align: center;
+  color: #850500;
+}
+
+.color:hover {
+  transform: scale(1.3);
+}
