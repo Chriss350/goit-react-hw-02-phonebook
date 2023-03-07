@@ -34,8 +34,7 @@ export class App extends Component {
             alert('callback');
           }
         )
-      : // alert(`${name} is already on the contacts list`)
-        this.setState(({ contacts }) => ({
+      : this.setState(({ contacts }) => ({
           contacts: [contact, ...contacts],
         }));
   };
