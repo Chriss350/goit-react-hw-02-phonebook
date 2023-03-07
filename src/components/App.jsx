@@ -4,6 +4,10 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { Contacts } from './Contacts/Contacts';
 import { Navbar } from './Navbar/Navbar';
 import 'react-notifications/lib/notifications.css';
+import {
+  NotificationContainer,
+  NotificationManager,
+} from 'react-notifications';
 
 export class App extends Component {
   state = {
@@ -22,8 +26,16 @@ export class App extends Component {
     const { contacts } = this.state;
     const contact = { id: nanoid(), name, number };
     contacts.some(el => el.name === name)
-      ? alert(`${name} is already on the contacts list`)
-      : this.setState(({ contacts }) => ({
+      ? NotificationManager.error(
+          `${name} is already on the contacts list`,
+          '',
+          2500,
+          () => {
+            alert('callback');
+          }
+        )
+      : // alert(`${name} is already on the contacts list`)
+        this.setState(({ contacts }) => ({
           contacts: [contact, ...contacts],
         }));
   };
@@ -67,6 +79,7 @@ export class App extends Component {
             </div>
           </div>
         </div>
+        <NotificationContainer />
       </>
     );
   }
